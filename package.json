@@ -6,10 +6,20 @@
     "eslint": "^9.39.1",
     "globals": "^16.5.0"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "babel src -d dist",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
+    "babel": "^5.8.38",
+    "code": "^5.2.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
+    "http": "^0.0.1-security",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-scripts": "^5.0.1"
   }
 }
