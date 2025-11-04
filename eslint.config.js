@@ -2,6 +2,7 @@ import globals from "globals";
 import js from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
 import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
 
 export default [
   {
@@ -24,6 +25,13 @@ export default [
     },
     plugins: {
       prettier: prettier,
+      react: react,
+    },
+
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
 
     rules: {
@@ -50,6 +58,8 @@ export default [
           endOfLine: "lf",
         },
       ],
+
+      "react/jsx-uses-vars": "error",
     },
   },
   eslintConfigPrettier,
