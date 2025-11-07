@@ -70,6 +70,40 @@ main {
   line-height: 1.5;
 }
 
+.page-description.muted-text {
+  margin: 0;
+  color: var(--text-tertiary);
+}
+
+.auth-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(86, 139, 255, 0.12), rgba(142, 214, 255, 0.12));
+  border: 1px solid rgba(80, 130, 255, 0.25);
+}
+
+.auth-banner strong {
+  font-weight: 600;
+}
+
+.form-error,
+.form-success {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+}
+
+.form-error {
+  color: #c03540;
+}
+
+.form-success {
+  color: #2d6a4f;
+}
+
 .cta-group {
   display: flex;
   flex-wrap: wrap;

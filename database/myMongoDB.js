@@ -3,95 +3,103 @@ import dotenv from "dotenv";
 dotenv.config();
 
 function MyMongoDB({
-  DB_NAME = "recipeFinder",
-  COLLECTION_NAME = "recipes",
+  DB_NAME = "campus_marketplace",
+  COLLECTION_NAME = "items",
   DEFAULT_URI = "mongodb://localhost:27017",
 } = {}) {
   const me = {};
-  const URI = process.env.MONGODB_URI || DEFAULT_URI;
+  const URI = process.env.MONGO_URI || DEFAULT_URI;
   const DB = process.env.DB_NAME || DB_NAME;
   console.log(`Using MongoDB at ${URI}, database: ${DB}`);
 
-  const connect = () => {
+  const connect = async () => {
     const client = new MongoClient(URI);
-    const recipes = client.db(DB).collection(COLLECTION_NAME);
-    const users = client.db(DB).collection("users");
+    await client.connect();
+    const db = client.db(DB);
+    const items = db.collection(COLLECTION_NAME);
+    const users = db.collection("users");
 
-    return { client, recipes, users };
+    return { client, db, items, users };
   };
 
-  me.getRecipes = async ({ query = {}, pageSize = 100, page = 0 } = {}) => {
-    const { client, recipes } = connect();
+  me.getItems = async ({ query = {}, pageSize = 100, page = 0 } = {}) => {
+    const { client, items } = await connect();
 
     try {
-      const data = await recipes
+      const data = await items
         .find(query)
         .sort({ updatedAt: -1, createdAt: -1 })
         .limit(pageSize)
         .skip(pageSize * page)
         .toArray();
-      console.log("Fetched recipes from MongoDB:", data);
+      console.log("Fetched items from MongoDB:", data);
       return data;
     } catch (err) {
-      console.error("Error fetching recipes from MongoDB:", err);
+      console.error("Error fetching items from MongoDB:", err);
       throw err;
     } finally {
       await client.close();
     }
   };
 
-  me.getRecipeById = async (recipeId) => {
-    const { client, recipes } = connect();
+  me.getItemById = async (itemId) => {
+    const { client, items } = await connect();
 
     try {
-      const recipe = await recipes.findOne({ _id: new ObjectId(recipeId) });
-      console.log("Fetched recipe from MongoDB:", recipe);
-      return recipe;
+      const item = await items.findOne({ _id: new ObjectId(itemId) });
+      console.log("Fetched item from MongoDB:", item);
+      return item;
     } catch (err) {
-      console.error("Error fetching recipe from MongoDB:", err);
+      console.error("Error fetching item from MongoDB:", err);
       throw err;
     } finally {
       await client.close();
     }
   };
 
-  me.createRecipe = async ({
-    name,
-    ingredients,
-    instructions,
+  me.createItem = async ({
+    title,
+    description,
+    price,
     category,
-    cookTime,
-    servings,
-    source,
+    condition,
+    imageUrl,
+    location,
+    sellerId,
+    sellerName,
+    status,
   }) => {
-    const { client, recipes } = connect();
+    const { client, items } = await connect();
 
     try {
       const createdAt = new Date();
       const doc = {
-        name,
-        ingredients,
-        instructions,
-        category: category || "Uncategorized",
-        cookTime: parseInt(cookTime) || 0,
-        servings: parseInt(servings) || 1,
-        source: source || "",
+        title,
+        description,
+        price,
+        category,
+        condition,
+        imageUrl,
+        location,
+        sellerId,
+        sellerName,
+        status,
         createdAt,
         updatedAt: createdAt,
       };
-      const result = await recipes.insertOne(doc);
-      console.log("Created recipe in MongoDB with id:", result.insertedId);
+      const result = await items.insertOne(doc);
+      console.log("Created item in MongoDB with id:", result.insertedId);
       return { _id: result.insertedId, ...doc };
     } catch (err) {
-      console.error("Error creating recipe in MongoDB:", err);
+      console.error("Error creating item in MongoDB:", err);
       throw err;
     } finally {
       await client.close();
     }
   };
 
-  me.updateRecipe = async (recipeId, updateData) => {
-    const { client, recipes } = connect();
+  me.updateItem = async (itemId, updateData) => {
+    const { client, items } = await connect();
 
     try {
       const update = {
@@ -99,8 +107,8 @@ function MyMongoDB({
         updatedAt: new Date(),
       };
 
-      const result = await recipes.updateOne(
-        { _id: new ObjectId(recipeId) },
+      const result = await items.updateOne(
+        { _id: new ObjectId(itemId) },
         { $set: update },
       );
 
@@ -108,25 +116,25 @@ function MyMongoDB({
         return null;
       }
 
-      console.log("Updated recipe in MongoDB:", recipeId);
-      return await me.getRecipeById(recipeId);
+      console.log("Updated item in MongoDB:", itemId);
+      return await me.getItemById(itemId);
     } catch (err) {
-      console.error("Error updating recipe in MongoDB:", err);
+      console.error("Error updating item in MongoDB:", err);
       throw err;
     } finally {
       await client.close();
     }
   };
 
-  me.deleteRecipe = async (recipeId) => {
-    const { client, recipes } = connect();
+  me.deleteItem = async (itemId) => {
+    const { client, items } = await connect();
 
     try {
-      const result = await recipes.deleteOne({ _id: new ObjectId(recipeId) });
-      console.log("Deleted recipe from MongoDB:", recipeId);
+      const result = await items.deleteOne({ _id: new ObjectId(itemId) });
+      console.log("Deleted item from MongoDB:", itemId);
       return result.deletedCount > 0;
     } catch (err) {
-      console.error("Error deleting recipe from MongoDB:", err);
+      console.error("Error deleting item from MongoDB:", err);
       throw err;
     } finally {
       await client.close();
@@ -134,7 +142,7 @@ function MyMongoDB({
   };
 
   me.getUserByUsername = async (username) => {
-    const { client, users } = connect();
+    const { client, users } = await connect();
     try {
       const user = await users.findOne({ username });
       return user;
@@ -152,13 +160,11 @@ function MyMongoDB({
     firstName = "",
     lastName = "",
   }) => {
-    const { client, users } = connect();
+    const { client, users } = await connect();
     try {
       const createdAt = new Date();
       const doc = {
         username,
-        // NOTE: you said keep it simple for class project — this remains plain text like your original.
-        // In production you'd hash this.
         password,
         firstName,
         lastName,
@@ -176,7 +182,7 @@ function MyMongoDB({
   };
 
   me.verifyUserCredentials = async (username, password) => {
-    const { client, users } = connect();
+    const { client, users } = await connect();
     try {
       const user = await users.findOne({ username });
       if (user && user.password === password) {

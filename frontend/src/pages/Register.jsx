@@ -1,6 +1,59 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { post } from "../lib/apiClient.js";
+import { saveUser } from "../lib/auth.js";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [status, setStatus] = useState({ loading: false, error: "", message: "" });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const email = formData.username.trim();
+    if (!email.toLowerCase().endsWith("@northeastern.edu")) {
+      setStatus({
+        loading: false,
+        error: "Please use your northeastern.edu email address.",
+        message: "",
+      });
+      return;
+    }
+
+    setStatus({ loading: true, error: "", message: "" });
+
+    const payload = { ...formData, username: email };
+    setFormData((prev) => ({ ...prev, username: email }));
+
+    try {
+      const user = await post("/api/auth/register", payload);
+      saveUser(user);
+      setStatus({
+        loading: false,
+        error: "",
+        message: `Welcome, ${user.firstName || user.username}!`,
+      });
+
+      setTimeout(() => navigate("/"), 1200);
+    } catch (err) {
+      setStatus({
+        loading: false,
+        error: err.message || "Unable to create account",
+        message: "",
+      });
+    }
+  };
+
   return (
     <main>
       <section className="page-shell">
@@ -13,23 +66,58 @@ export default function Register() {
           </p>
         </header>
 
-        <form>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Northeastern email</label>
+          <input
+            id="username"
+            name="username"
+            placeholder="you@northeastern.edu"
+            value={formData.username}
+            onChange={handleChange}
+            autoComplete="email"
+            type="email"
+            required
+          />
+
           <label htmlFor="firstName">First name</label>
-          <input id="firstName" name="firstName" placeholder="Alex" type="text" />
+          <input
+            id="firstName"
+            name="firstName"
+            placeholder="Alex"
+            value={formData.firstName}
+            onChange={handleChange}
+            autoComplete="given-name"
+          />
 
           <label htmlFor="lastName">Last name</label>
-          <input id="lastName" name="lastName" placeholder="Chen" type="text" />
-
-          <label htmlFor="email">University email</label>
-          <input id="email" name="email" placeholder="alex.chen@university.edu" type="email" />
+          <input
+            id="lastName"
+            name="lastName"
+            placeholder="Chen"
+            value={formData.lastName}
+            onChange={handleChange}
+            autoComplete="family-name"
+          />
 
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" placeholder="Create a secure password" type="password" />
+          <input
+            id="password"
+            name="password"
+            placeholder="Create a secure password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            autoComplete="new-password"
+            required
+          />
 
-          <button className="btn btn-primary" type="submit">
-            Create account
+          <button className="btn btn-primary" type="submit" disabled={status.loading}>
+            {status.loading ? "Creating..." : "Create account"}
           </button>
         </form>
+
+        {status.error && <p className="form-error">{status.error}</p>}
+        {status.message && <p className="form-success">{status.message}</p>}
 
         <p className="muted-text">
           Already a member? <Link className="subtle-link" to="/login">Sign in</Link>

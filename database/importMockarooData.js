@@ -37,7 +37,7 @@ async function importData() {
     await client.connect();
     console.log('Connected to MongoDB');
     
-    const db = client.db('campus_marketplace');
+    const db = client.db(process.env.DB_NAME || 'campus_marketplace');
     const collection = db.collection('items');
     
     // clear data

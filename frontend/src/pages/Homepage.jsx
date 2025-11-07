@@ -1,6 +1,21 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { clearUser, getStoredUser } from "../lib/auth.js";
 
 export default function Homepage() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(() => getStoredUser());
+
+  useEffect(() => {
+    setUser(getStoredUser());
+  }, []);
+
+  const handleSignOut = () => {
+    clearUser();
+    setUser(null);
+    navigate("/login");
+  };
+
   return (
     <main>
       <article className="page-shell">
@@ -13,14 +28,25 @@ export default function Homepage() {
           </p>
         </header>
 
-        <div className="cta-group">
-          <Link className="btn btn-primary" to="/login">
-            Sign in
-          </Link>
-          <Link className="btn btn-secondary" to="/register">
-            Create account
-          </Link>
-        </div>
+        {user ? (
+          <div className="auth-banner">
+            <span>
+              Signed in as <strong>{user.firstName || user.username}</strong>
+            </span>
+            <button className="btn btn-secondary" type="button" onClick={handleSignOut}>
+              Sign out
+            </button>
+          </div>
+        ) : (
+          <div className="cta-group">
+            <Link className="btn btn-primary" to="/login">
+              Sign in
+            </Link>
+            <Link className="btn btn-secondary" to="/register">
+              Create account
+            </Link>
+          </div>
+        )}
 
         <div className="divider" />
 
