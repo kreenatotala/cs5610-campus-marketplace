@@ -33,6 +33,11 @@ export default function Homepage() {
               Discover a space built for students to move essentials quickly, fairly, and
               without the endless group chat scroll.
             </p>
+            <div className="homepage-cta">
+            <Link className="btn btn-primary" to="/items">
+              Browse Items
+            </Link>
+          </div>
           </header>
 
           {user ? (
