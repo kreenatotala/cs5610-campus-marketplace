@@ -1,0 +1,61 @@
+.homepage-card {
+  background: linear-gradient(160deg, var(--surface) 0%, var(--surface-highlight) 100%);
+}
+
+.homepage-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.auth-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(79, 50, 32, 0.12);
+  background: rgba(186, 28, 47, 0.08);
+}
+
+.auth-banner strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.auth-banner .btn.btn-secondary {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 16px rgba(186, 28, 47, 0.18);
+}
+
+.auth-banner .btn.btn-secondary:hover,
+.auth-banner .btn.btn-secondary:focus-visible {
+  background: var(--accent-hover);
+  box-shadow: 0 10px 20px rgba(153, 21, 39, 0.24);
+}
+
+.feature-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(31, 27, 22, 0),
+    rgba(31, 27, 22, 0.2),
+    rgba(31, 27, 22, 0)
+  );
+}
+
+@media (max-width: 600px) {
+  .homepage-cta {
+    flex-direction: column;
+  }
+}
