@@ -1,0 +1,8 @@
+.login-card {
+  background: linear-gradient(170deg, var(--surface) 0%, rgba(186, 28, 47, 0.05) 50%, #fff0e0 100%);
+}
+
+.login-intro {
+  display: grid;
+  gap: 0.5rem;
+}
