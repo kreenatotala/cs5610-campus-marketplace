@@ -1,12 +1,9 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
 import { MongoClient, ObjectId } from 'mongodb';
 import fs from 'fs';
 
-// rest of your code...
-
-const uri = process.env.MONGO_URI || 'mongodb://localhost:27017';
+const uri = 'mongodb+srv://db_user:123@campus-marketplace.mlxe99a.mongodb.net/?appName=campus-marketplace';
 const client = new MongoClient(uri);
 
 async function importData() {
@@ -37,11 +34,12 @@ async function importData() {
     await client.connect();
     console.log('Connected to MongoDB');
     
-    const db = client.db(process.env.DB_NAME || 'campus_marketplace');
+    const db = client.db(process.env.DB_NAME || 'campusMarketplace');
     const collection = db.collection('items');
     
     // clear data
     await collection.deleteMany({});
+    const result = await collection.insertMany(transformedItems);
     
   } catch (error) {
     console.error('Error:', error);

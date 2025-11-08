@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const items = await client.db('campus_marketplace').collection('items').find().toArray();
+    const items = await client.db('campusMarketplace').collection('items').find().toArray();
     res.json(items);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const item = await client.db('campus_marketplace').collection('items').findOne({ _id: new ObjectId(req.params.id) });
+    const item = await client.db('campusMarketplace').collection('items').findOne({ _id: new ObjectId(req.params.id) });
     item ? res.json(item) : res.status(404).json({ error: 'Not found' });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    const result = await client.db('campus_marketplace').collection('items').insertOne(newItem);
+    const result = await client.db('campusMarketplace').collection('items').insertOne(newItem);
     res.status(201).json({ _id: result.insertedId, ...newItem });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -58,7 +58,7 @@ router.put('/:id', async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const result = await client.db('campus_marketplace').collection('items').updateOne(
+    const result = await client.db('campusMarketplace').collection('items').updateOne(
       { _id: new ObjectId(req.params.id) },
       { $set: { ...req.body, updatedAt: new Date() } }
     );
@@ -75,7 +75,7 @@ router.delete('/:id', async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const result = await client.db('campus_marketplace').collection('items').deleteOne({ _id: new ObjectId(req.params.id) });
+    const result = await client.db('campusMarketplace').collection('items').deleteOne({ _id: new ObjectId(req.params.id) });
     result.deletedCount ? res.json({ message: 'Deleted' }) : res.status(404).json({ error: 'Not found' });
   } catch (error) {
     res.status(500).json({ error: error.message });
