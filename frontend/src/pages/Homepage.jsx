@@ -37,6 +37,9 @@ export default function Homepage() {
             <Link className="btn btn-primary" to="/items">
               Browse Items
             </Link>
+            <Link className="btn btn-primary" to="/form">
+              Item Form
+            </Link>
           </div>
           </header>
 

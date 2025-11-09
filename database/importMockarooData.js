@@ -13,8 +13,8 @@ async function importData() {
     const items = JSON.parse(rawData);
     
     // transform data to match database schema
-    const transformedItems = items.map(item => ({
-      title: item.title,
+    const transformedItems = items.map((item, index) => ({
+      title: item.title || `Item ${index + 1}`,
       description: item.description,
       price: item.price,
       category: item.category,
