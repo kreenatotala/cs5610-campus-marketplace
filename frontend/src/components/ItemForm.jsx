@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './ItemForm.css';
 
 function ItemForm({ item, onSubmit, onCancel }) {
-  const [formData, setFormData] = useState(item || {
+  const [formData, setFormData] = useState({
     title: '',
     description: '',
     price: '',
@@ -14,6 +14,21 @@ function ItemForm({ item, onSubmit, onCancel }) {
     distance: ''
   });
 
+  useEffect(() => {
+    if (item) {
+      setFormData({
+        title: item.title || '',
+        description: item.description || '',
+        price: item.price || '',
+        category: item.category || 'books',
+        condition: item.condition || 'good',
+        imageUrl: item.imageUrl || '',
+        building: item.location?.building || '',
+        distance: item.location?.distance || ''
+      });
+    }
+  }, [item]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -21,8 +36,12 @@ function ItemForm({ item, onSubmit, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({
-      ...formData,
+      title: formData.title,
+      description: formData.description,
       price: Number(formData.price),
+      category: formData.category,
+      condition: formData.condition,
+      imageUrl: formData.imageUrl,
       location: { building: formData.building, distance: Number(formData.distance) }
     });
   };

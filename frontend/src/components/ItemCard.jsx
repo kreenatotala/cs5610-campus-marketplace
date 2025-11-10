@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './ItemCard.css';
 
-function ItemCard({ item, onEdit, onDelete, isOwner }) {
+function ItemCard({ item, onDelete, isOwner }) {
   return (
     <div className="item-card">
       <img src={item.imageUrl} alt={item.title} className="item-image" />
@@ -12,7 +12,6 @@ function ItemCard({ item, onEdit, onDelete, isOwner }) {
         <span className="category">{item.category}</span>
         {isOwner && (
           <div className="actions">
-            <button onClick={() => onEdit(item)}>Edit</button>
             <button onClick={() => onDelete(item._id)}>Delete</button>
           </div>
         )}
@@ -30,7 +29,6 @@ ItemCard.propTypes = {
     category: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
   }).isRequired,
-  onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   isOwner: PropTypes.bool
 };
