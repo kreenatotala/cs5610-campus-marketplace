@@ -8,7 +8,11 @@ import "./Login.css";
 export default function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const [status, setStatus] = useState({ loading: false, error: "", message: "" });
+  const [status, setStatus] = useState({
+    loading: false,
+    error: "",
+    message: "",
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,7 +34,10 @@ export default function Login() {
     }
 
     try {
-      const user = await post("/api/auth/login", { ...formData, username: email });
+      const user = await post("/api/auth/login", {
+        ...formData,
+        username: email,
+      });
       setFormData((prev) => ({ ...prev, username: email }));
       saveUser(user);
       setStatus({
@@ -58,8 +65,8 @@ export default function Login() {
           <header className="login-intro">
             <h1 className="page-title">Sign in to your account</h1>
             <p className="page-description">
-              Access listings, track your offers, and stay connected with buyers and sellers
-              across campus.
+              Access listings, track your offers, and stay connected with buyers
+              and sellers across campus.
             </p>
           </header>
 
@@ -88,7 +95,11 @@ export default function Login() {
               required
             />
 
-            <button className="btn btn-primary" type="submit" disabled={status.loading}>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={status.loading}
+            >
               {status.loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
@@ -97,7 +108,10 @@ export default function Login() {
           {status.message && <p className="form-success">{status.message}</p>}
 
           <p className="muted-text">
-            New here? <Link className="subtle-link" to="/register">Create an account</Link>
+            New here?{" "}
+            <Link className="subtle-link" to="/register">
+              Create an account
+            </Link>
           </p>
         </section>
       </main>

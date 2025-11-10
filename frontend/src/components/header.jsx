@@ -35,8 +35,14 @@ export default function GlobalNav() {
           </Link>
           {user ? (
             <>
-              <span className="nav-user">{user.firstName || user.username}</span>
-              <button className="btn btn-secondary nav-signout" type="button" onClick={handleSignOut}>
+              <span className="nav-user">
+                {user.firstName || user.username}
+              </span>
+              <button
+                className="btn btn-secondary nav-signout"
+                type="button"
+                onClick={handleSignOut}
+              >
                 Sign out
               </button>
             </>
@@ -55,4 +61,3 @@ export default function GlobalNav() {
     </nav>
   );
 }
-

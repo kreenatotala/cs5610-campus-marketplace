@@ -3,7 +3,10 @@ const defaultHeaders = {
   Accept: "application/json",
 };
 
-async function request(path, { method = "GET", body, headers = {}, ...options } = {}) {
+async function request(
+  path,
+  { method = "GET", body, headers = {}, ...options } = {},
+) {
   const response = await fetch(path, {
     method,
     headers: { ...defaultHeaders, ...headers },

@@ -2,7 +2,9 @@ const STORAGE_KEY = "campus-marketplace:user";
 export const AUTH_EVENT = "auth:user-changed";
 
 function isBrowser() {
-  return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+  return (
+    typeof window !== "undefined" && typeof window.localStorage !== "undefined"
+  );
 }
 
 export function saveUser(user) {

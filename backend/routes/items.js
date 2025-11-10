@@ -1,15 +1,19 @@
-import express from 'express';
-import { MongoClient, ObjectId } from 'mongodb';
+import express from "express";
+import { MongoClient, ObjectId } from "mongodb";
 
 const router = express.Router();
 const uri = process.env.MONGO_URI;
 
 // GET all the items
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const items = await client.db('campusMarketplace').collection('items').find().toArray();
+    const items = await client
+      .db("campusMarketplace")
+      .collection("items")
+      .find()
+      .toArray();
     res.json(items);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -19,12 +23,15 @@ router.get('/', async (req, res) => {
 });
 
 // GET one single item
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const item = await client.db('campusMarketplace').collection('items').findOne({ _id: new ObjectId(req.params.id) });
-    item ? res.json(item) : res.status(404).json({ error: 'Not found' });
+    const item = await client
+      .db("campusMarketplace")
+      .collection("items")
+      .findOne({ _id: new ObjectId(req.params.id) });
+    item ? res.json(item) : res.status(404).json({ error: "Not found" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   } finally {
@@ -33,7 +40,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST create a new item
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
@@ -42,9 +49,12 @@ router.post('/', async (req, res) => {
       price: Number(req.body.price),
       sellerId: new ObjectId(req.body.sellerId),
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
-    const result = await client.db('campusMarketplace').collection('items').insertOne(newItem);
+    const result = await client
+      .db("campusMarketplace")
+      .collection("items")
+      .insertOne(newItem);
     res.status(201).json({ _id: result.insertedId, ...newItem });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -54,15 +64,20 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update an existing item
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const result = await client.db('campusMarketplace').collection('items').updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $set: { ...req.body, updatedAt: new Date() } }
-    );
-    result.matchedCount ? res.json({ message: 'Updated' }) : res.status(404).json({ error: 'Not found' });
+    const result = await client
+      .db("campusMarketplace")
+      .collection("items")
+      .updateOne(
+        { _id: new ObjectId(req.params.id) },
+        { $set: { ...req.body, updatedAt: new Date() } },
+      );
+    result.matchedCount
+      ? res.json({ message: "Updated" })
+      : res.status(404).json({ error: "Not found" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   } finally {
@@ -71,12 +86,17 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE item
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
-    const result = await client.db('campusMarketplace').collection('items').deleteOne({ _id: new ObjectId(req.params.id) });
-    result.deletedCount ? res.json({ message: 'Deleted' }) : res.status(404).json({ error: 'Not found' });
+    const result = await client
+      .db("campusMarketplace")
+      .collection("items")
+      .deleteOne({ _id: new ObjectId(req.params.id) });
+    result.deletedCount
+      ? res.json({ message: "Deleted" })
+      : res.status(404).json({ error: "Not found" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   } finally {

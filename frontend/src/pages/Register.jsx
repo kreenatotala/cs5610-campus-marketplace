@@ -13,7 +13,11 @@ export default function Register() {
     firstName: "",
     lastName: "",
   });
-  const [status, setStatus] = useState({ loading: false, error: "", message: "" });
+  const [status, setStatus] = useState({
+    loading: false,
+    error: "",
+    message: "",
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -65,8 +69,8 @@ export default function Register() {
           <header className="register-grid">
             <h1 className="page-title">Join the marketplace community</h1>
             <p className="page-description">
-              Build trust with a verified campus profile, list items in minutes, and connect
-              with peers who share your interests.
+              Build trust with a verified campus profile, list items in minutes,
+              and connect with peers who share your interests.
             </p>
           </header>
 
@@ -120,7 +124,11 @@ export default function Register() {
               required
             />
 
-            <button className="btn btn-primary" type="submit" disabled={status.loading}>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={status.loading}
+            >
               {status.loading ? "Creating..." : "Create account"}
             </button>
           </form>
@@ -129,7 +137,10 @@ export default function Register() {
           {status.message && <p className="form-success">{status.message}</p>}
 
           <p className="muted-text">
-            Already a member? <Link className="subtle-link" to="/login">Sign in</Link>
+            Already a member?{" "}
+            <Link className="subtle-link" to="/login">
+              Sign in
+            </Link>
           </p>
         </section>
       </main>

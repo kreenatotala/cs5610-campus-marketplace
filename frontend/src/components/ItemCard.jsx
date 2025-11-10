@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import './ItemCard.css';
+import PropTypes from "prop-types";
+import "./ItemCard.css";
 
 function ItemCard({ item, onDelete, isOwner }) {
   return (
@@ -30,7 +30,7 @@ ItemCard.propTypes = {
     imageUrl: PropTypes.string,
   }).isRequired,
   onDelete: PropTypes.func,
-  isOwner: PropTypes.bool
+  isOwner: PropTypes.bool,
 };
 
 export default ItemCard;
