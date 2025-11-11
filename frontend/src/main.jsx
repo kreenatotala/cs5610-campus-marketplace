@@ -5,7 +5,7 @@ import "./index.css";
 import Homepage from "./pages/Homepage.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import ItemsPage from "./components/ItemsPage.jsx";
+import ItemsPage from "./pages/ItemsPage.jsx";
 import ItemForm from "./components/ItemForm.jsx";
 
 createRoot(document.getElementById("root")).render(

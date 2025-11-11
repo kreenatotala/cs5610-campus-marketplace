@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ItemCard from "../components/ItemCard";
 import ItemForm from "../components/ItemForm";
+import GlobalNav from "../components/header.jsx";
 import { AUTH_EVENT, getStoredUser } from "../lib/auth.js";
 import "./ItemsPage.css";
 
@@ -93,41 +94,51 @@ function ItemsPage() {
 
   if (showForm) {
     return (
-      <ItemForm onSubmit={handleCreate} onCancel={() => setShowForm(false)} />
+      <>
+        <GlobalNav />
+        <ItemForm
+          onSubmit={handleCreate}
+          onCancel={() => setShowForm(false)}
+          embedded
+        />
+      </>
     );
   }
 
   return (
-    <div className="items-page">
-      <div className="items-header">
-        <h1>Campus Marketplace</h1>
-        <button onClick={() => setShowForm(true)}>+ Create Listing</button>
+    <>
+      <GlobalNav />
+      <div className="items-page">
+        <div className="items-header">
+          <h1>Campus Marketplace</h1>
+          <button onClick={() => setShowForm(true)}>+ Create Listing</button>
+        </div>
+        <div className="items-grid">
+          {currentItems.map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onDelete={handleDelete}
+              isOwner={Boolean(currentUserId) && item.sellerId === currentUserId}
+            />
+          ))}
+        </div>
+        <div className="pagination">
+          <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
+            Previous
+          </button>
+          <span>
+            Page {page} of {totalPages}
+          </span>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={page === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
-      <div className="items-grid">
-        {currentItems.map((item) => (
-          <ItemCard
-            key={item._id}
-            item={item}
-            onDelete={handleDelete}
-            isOwner={Boolean(currentUserId) && item.sellerId === currentUserId}
-          />
-        ))}
-      </div>
-      <div className="pagination">
-        <button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
-          Previous
-        </button>
-        <span>
-          Page {page} of {totalPages}
-        </span>
-        <button
-          onClick={() => setPage((p) => p + 1)}
-          disabled={page === totalPages}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
 

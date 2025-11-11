@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import GlobalNav from "./header.jsx";
 import "./ItemForm.css";
 
-function ItemForm({ item, onSubmit, onCancel }) {
+function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -49,8 +52,9 @@ function ItemForm({ item, onSubmit, onCancel }) {
     });
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="item-form">
+  const formContent = (
+    <div className="item-form-wrapper">
+      <form onSubmit={handleSubmit} className="item-form">
       <h2>{item ? "Edit" : "Create"} Listing</h2>
 
       <input
@@ -119,19 +123,46 @@ function ItemForm({ item, onSubmit, onCancel }) {
       />
 
       <div className="form-actions">
-        <button type="button" onClick={onCancel}>
+        <button
+          type="button"
+          onClick={() => {
+            if (onCancel) {
+              onCancel();
+              return;
+            }
+            const historyIndex = window.history?.state?.idx ?? 0;
+            if (historyIndex > 0) {
+              navigate(-1);
+            } else {
+              navigate("/");
+            }
+          }}
+        >
           Cancel
         </button>
         <button type="submit">{item ? "Update" : "Create"}</button>
       </div>
-    </form>
+      </form>
+    </div>
+  );
+
+  if (embedded) {
+    return formContent;
+  }
+
+  return (
+    <>
+      <GlobalNav />
+      <main>{formContent}</main>
+    </>
   );
 }
 
 ItemForm.propTypes = {
   item: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  embedded: PropTypes.bool,
 };
 
 export default ItemForm;

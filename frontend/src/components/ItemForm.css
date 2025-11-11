@@ -1,11 +1,17 @@
+.item-form-wrapper {
+  width: min(680px, 92vw);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem) 1.75rem 3rem;
+}
+
 .item-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 24px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
   
   .item-form h2 {
     margin-top: 0;
