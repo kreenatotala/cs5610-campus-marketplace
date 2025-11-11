@@ -13,7 +13,7 @@ Campus Marketplace is a web application that facilitates peer-to-peer item buyin
 Campus Marketplace is a full-stack web application that helps Northeastern students buy and sell items within the campus community. Authenticated users can create listings, browse available items, contact sellers via email, and manage their own postings in a streamlined interface designed for quick, trustworthy exchanges.
 
 ## Design Document
-[campus-marketplace-design-doc.pdf](https://github.com/user-attachments/files/23467266/campus-marketplace-design-doc.pdf)
+[campus marketplace design doc.pdf](https://github.com/user-attachments/files/23469278/cs5610.design.doc.pdf)
 
 ## Video and Presentation
 Video: https://drive.google.com/file/d/1-J--_N6PdriK05T5T7LQVqmLU0MIWx8v/view?usp=sharing
