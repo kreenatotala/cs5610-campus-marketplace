@@ -19,6 +19,9 @@ Campus Marketplace is a full-stack web application that helps Northeastern stude
 Video: https://drive.google.com/file/d/1-J--_N6PdriK05T5T7LQVqmLU0MIWx8v/view?usp=sharing
 Presentation: https://docs.google.com/presentation/d/127IGJxd5xEtrEnO1ifA477FHT03G6-WHBpo04byaAe8/edit?usp=sharing
 
+## Deployement
+It is deployed publicly using `Render` here: https://cs5610-campus-marketplace.onrender.com 
+
 ## Screenshot
 <img width="1002" height="678" alt="Screenshot 2025-11-10 at 8 27 12 PM" src="https://github.com/user-attachments/assets/21c7bd6f-dcbd-4c16-95a6-a1e0bde82eb6" />
 <img width="1437" height="804" alt="Screenshot 2025-11-10 at 8 26 56 PM" src="https://github.com/user-attachments/assets/f4086754-d5df-4b33-8e05-5ad6dd73dc54" />
