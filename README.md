@@ -17,6 +17,7 @@ Campus Marketplace is a full-stack web application that helps Northeastern stude
 
 ## Video and Presentation
 Video: https://drive.google.com/file/d/1-J--_N6PdriK05T5T7LQVqmLU0MIWx8v/view?usp=sharing
+
 Presentation: https://docs.google.com/presentation/d/127IGJxd5xEtrEnO1ifA477FHT03G6-WHBpo04byaAe8/edit?usp=sharing
 
 ## Deployement
