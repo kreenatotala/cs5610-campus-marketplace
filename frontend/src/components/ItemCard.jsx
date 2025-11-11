@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import placeholder from "../../public/stack-of-books-1531138.jpg";
 import "./ItemCard.css";
 
 function ItemCard({ item, onDelete, isOwner }) {
   return (
     <div className="item-card">
-      <img src={item.imageUrl} alt={item.title} className="item-image" />
+      <img src={placeholder} alt={item.title} className="item-image" />
       <div className="item-content">
         <h3>{item.title}</h3>
         <p className="price">${item.price}</p>

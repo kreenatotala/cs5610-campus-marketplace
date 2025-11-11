@@ -38,7 +38,7 @@ export default function Homepage() {
           </header>
 
           {user ? (
-            <div className="auth-banner">
+            <><div className="auth-banner">
               <span>
                 Signed in as <strong>{user.firstName || user.username}</strong>
               </span>
@@ -49,7 +49,11 @@ export default function Homepage() {
               >
                 Sign out
               </button>
-            </div>
+            </div><button className="btn btn-secondary" type="button" onClick={() => navigate("/form")}>
+                Add Item
+              </button><button className="btn btn-secondary" type="button" onClick={() => navigate("/items")}>
+                Browse Items
+              </button></>
           ) : (
             <div className="homepage-cta">
               <Link className="btn btn-primary" to="/login">
