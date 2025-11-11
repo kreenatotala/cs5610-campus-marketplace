@@ -3,6 +3,12 @@ import placeholder from "../../public/stack-of-books-1531138.jpg";
 import "./ItemCard.css";
 
 function ItemCard({ item, onDelete, isOwner }) {
+  const contactHref = item.sellerEmail
+    ? `mailto:${encodeURIComponent(item.sellerEmail)}?subject=${encodeURIComponent(
+        `Interested in ${item.title}`,
+      )}`
+    : null;
+
   return (
     <div className="item-card">
       <img src={placeholder} alt={item.title} className="item-image" />
@@ -11,11 +17,17 @@ function ItemCard({ item, onDelete, isOwner }) {
         <p className="price">${item.price}</p>
         <p>{item.description}</p>
         <span className="category">{item.category}</span>
-        {isOwner && (
-          <div className="actions">
+        <div className="actions">
+          {isOwner ? (
             <button onClick={() => onDelete(item._id)}>Delete</button>
-          </div>
-        )}
+          ) : (
+            contactHref && (
+              <a className="btn btn-secondary" href={contactHref}>
+                Contact owner
+              </a>
+            )
+          )}
+        </div>
       </div>
     </div>
   );
@@ -29,6 +41,7 @@ ItemCard.propTypes = {
     price: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
+    sellerEmail: PropTypes.string,
   }).isRequired,
   onDelete: PropTypes.func,
   isOwner: PropTypes.bool,
