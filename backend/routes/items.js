@@ -1,3 +1,5 @@
+//The data-access layer is inconsistent and duplicated. (item.js <-> MyMongoDB.js)
+// It would be better to make data-access consistent.
 import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 
