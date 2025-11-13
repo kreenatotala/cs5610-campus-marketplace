@@ -13,8 +13,8 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
     category: "books",
     condition: "good",
     imageUrl: "",
-    building: "",
-    distance: "",
+    building: "", // this is interesting its required in the form but not visible to the user on the item card
+    distance: "", // similar to this
   });
 
   useEffect(() => {
@@ -104,14 +104,14 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
         name="imageUrl"
         value={formData.imageUrl}
         onChange={handleChange}
-        placeholder="Image URL"
+        placeholder="Image URL" // I tried to add images but they didn't work? I would recommend being clear to the user the type of url required for it to render properly. 
       />
       <input
         name="building"
         value={formData.building}
         onChange={handleChange}
         placeholder="Building"
-        required
+        required // does this mean the student building where the student will meet another student or where they live?
       />
       <input
         name="distance"
@@ -119,7 +119,7 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
         value={formData.distance}
         onChange={handleChange}
         placeholder="Distance (mi)"
-        required
+        required // why is this required? Distance to and from what? the location?
       />
 
       <div className="form-actions">
