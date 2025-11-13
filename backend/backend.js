@@ -36,6 +36,17 @@ app.use((req, res, next) => {
   }
 });
 
+// It is better to have this:
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error("Unhandled Error:", err);
+
+  res.status(err.status || 500).json({
+    error: err.message || "Internal Server Error",
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
