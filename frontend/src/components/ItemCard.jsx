@@ -23,7 +23,7 @@ function ItemCard({ item, onDelete, isOwner }) {
           ) : (
             contactHref && (
               <a className="btn btn-secondary" href={contactHref}>
-                Contact owner
+                Contact owner // this button isn't working for me, I couldn't get contact information about a listing. 
               </a>
             )
           )}
@@ -45,6 +45,6 @@ ItemCard.propTypes = {
   }).isRequired,
   onDelete: PropTypes.func,
   isOwner: PropTypes.bool,
-};
+}; // why does the user include information such as building or distance, but its not on the itemcard?
 
 export default ItemCard;
