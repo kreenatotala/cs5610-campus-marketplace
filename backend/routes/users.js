@@ -1,3 +1,4 @@
+// The system stores passwords in plaintext with no hashing. It would be better to have hashing, session/token, etc.
 import express from "express";
 import MyDB from "../../database/myMongoDB.js";
 
