@@ -90,7 +90,17 @@ label {
   color: var(--text-secondary);
 }
 
-input {
+.required-indicator {
+  color: var(--accent);
+}
+
+.optional-indicator {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+input,
+textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
@@ -98,14 +108,17 @@ input {
   background: var(--surface-muted);
   color: var(--text-primary);
   font-size: 1rem;
+  font-family: inherit;
   transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: rgba(123, 109, 93, 0.6);
 }
 
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(186, 28, 47, 0.15);
@@ -150,6 +163,19 @@ input:focus-visible {
 .btn-secondary:focus-visible {
   background: rgba(255, 244, 229, 0.8);
   border-color: rgba(79, 50, 32, 0.28);
+}
+
+.btn-danger {
+  background: #fcf1f1;
+  color: var(--accent);
+  border-color: rgba(186, 28, 47, 0.4);
+  box-shadow: none;
+}
+
+.btn-danger:hover,
+.btn-danger:focus-visible {
+  background: rgba(186, 28, 47, 0.12);
+  border-color: rgba(186, 28, 47, 0.8);
 }
 
 .subtle-link {

@@ -10,8 +10,8 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
     title: "",
     description: "",
     price: "",
-    category: "books",
-    condition: "good",
+    category: "",
+    condition: "",
     imageUrl: "",
     building: "",
     distance: "",
@@ -23,8 +23,8 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
         title: item.title || "",
         description: item.description || "",
         price: item.price || "",
-        category: item.category || "books",
-        condition: item.condition || "good",
+        category: item.category ?? "",
+        condition: item.condition ?? "",
         imageUrl: item.imageUrl || "",
         building: item.location?.building || "",
         distance: item.location?.distance || "",
@@ -57,33 +57,54 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
       <form onSubmit={handleSubmit} className="item-form">
         <h2>{item ? "Edit" : "Create"} Listing</h2>
 
+        <label htmlFor="title">
+          Title <span className="required-indicator">*</span>
+        </label>
         <input
+          id="title"
           name="title"
           value={formData.title}
           onChange={handleChange}
-          placeholder="Title"
+          placeholder="Textbooks, sofa, headphones..."
           required
         />
+
+        <label htmlFor="description">
+          Description <span className="optional-indicator">(optional)</span>
+        </label>
         <textarea
+          id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
-          placeholder="Description"
+          placeholder="Condition, what you liked about it, pickup details..."
         />
+
+        <label htmlFor="price">
+          Price <span className="required-indicator">*</span>
+        </label>
         <input
+          id="price"
           name="price"
           type="number"
           value={formData.price}
           onChange={handleChange}
-          placeholder="Price"
+          placeholder="Asking price in USD"
           required
         />
 
+        <label htmlFor="category">
+          Category <span className="optional-indicator">(optional)</span>
+        </label>
         <select
+          id="category"
           name="category"
           value={formData.category}
           onChange={handleChange}
         >
+          <option value="" disabled>
+            Select a category
+          </option>
           <option value="books">Books</option>
           <option value="furniture">Furniture</option>
           <option value="electronics">Electronics</option>
@@ -93,36 +114,44 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
           <option value="other">Other</option>
         </select>
 
+        <label htmlFor="condition">
+          Condition <span className="optional-indicator">(optional)</span>
+        </label>
         <select
+          id="condition"
           name="condition"
           value={formData.condition}
           onChange={handleChange}
         >
+          <option value="" disabled>
+            Select a condition
+          </option>
           <option value="new">New</option>
           <option value="like-new">Like New</option>
           <option value="good">Good</option>
           <option value="fair">Fair</option>
         </select>
 
+        <label htmlFor="imageUrl">
+          Image URL <span className="optional-indicator">(optional)</span>
+        </label>
         <input
+          id="imageUrl"
           name="imageUrl"
           value={formData.imageUrl}
           onChange={handleChange}
-          placeholder="Image URL"
+          placeholder="Link to an image of your item"
         />
+
+        <label htmlFor="building">
+          Building <span className="required-indicator">*</span>
+        </label>
         <input
+          id="building"
           name="building"
           value={formData.building}
           onChange={handleChange}
-          placeholder="Building"
-          required
-        />
-        <input
-          name="distance"
-          type="number"
-          value={formData.distance}
-          onChange={handleChange}
-          placeholder="Distance (mi)"
+          placeholder="Where you'd like to meet (e.g. Snell Library)"
           required
         />
 
