@@ -111,7 +111,9 @@ function ItemsPage() {
       <div className="items-page">
         <div className="items-header">
           <h1>Campus Marketplace</h1>
-          <button onClick={() => setShowForm(true)}>+ Create Listing</button>
+          <button className="btn btn-primary" onClick={() => setShowForm(true)}>
+            + Create Listing
+          </button>
         </div>
         <div className="items-grid">
           {currentItems.map((item) => (
@@ -119,7 +121,9 @@ function ItemsPage() {
               key={item._id}
               item={item}
               onDelete={handleDelete}
-              isOwner={Boolean(currentUserId) && item.sellerId === currentUserId}
+              isOwner={
+                Boolean(currentUserId) && item.sellerId === currentUserId
+              }
             />
           ))}
         </div>
@@ -131,6 +135,7 @@ function ItemsPage() {
             Page {page} of {totalPages}
           </span>
           <button
+            className="btn btn-primary"
             onClick={() => setPage((p) => p + 1)}
             disabled={page === totalPages}
           >

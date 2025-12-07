@@ -47,12 +47,3 @@
     font-size: 1rem;
   }
   
-  .form-actions button[type="button"] {
-    background: #f5f5f5;
-    color: #666;
-  }
-  
-  .form-actions button[type="submit"] {
-    background: #1976d2;
-    color: white;
-  }

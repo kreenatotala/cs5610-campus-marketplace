@@ -24,19 +24,6 @@
   color: var(--text-primary);
 }
 
-.auth-banner .btn.btn-secondary {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: transparent;
-  box-shadow: 0 8px 16px rgba(186, 28, 47, 0.18);
-}
-
-.auth-banner .btn.btn-secondary:hover,
-.auth-banner .btn.btn-secondary:focus-visible {
-  background: var(--accent-hover);
-  box-shadow: 0 10px 20px rgba(153, 21, 39, 0.24);
-}
-
 .feature-list {
   margin: 0;
   padding-left: 1.25rem;

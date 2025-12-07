@@ -52,12 +52,3 @@
     cursor: pointer;
   }
   
-  .actions button:first-child {
-    background: #1976d2;
-    color: white;
-  }
-  
-  .actions button:last-child {
-    background: #d32f2f;
-    color: white;
-  }

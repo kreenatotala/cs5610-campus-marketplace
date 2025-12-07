@@ -48,10 +48,10 @@ export default function GlobalNav() {
             </>
           ) : (
             <>
-              <Link className="nav-link" to="/login">
+              <Link className="btn btn-primary nav-cta" to="/login">
                 Sign in
               </Link>
-              <Link className="btn btn-primary nav-cta" to="/register">
+              <Link className="btn btn-secondary nav-cta" to="/register">
                 Create account
               </Link>
             </>

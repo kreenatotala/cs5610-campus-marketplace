@@ -38,22 +38,35 @@ export default function Homepage() {
           </header>
 
           {user ? (
-            <><div className="auth-banner">
-              <span>
-                Signed in as <strong>{user.firstName || user.username}</strong>
-              </span>
+            <>
+              <div className="auth-banner">
+                <span>
+                  Signed in as{" "}
+                  <strong>{user.firstName || user.username}</strong>
+                </span>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </button>
+              </div>
               <button
-                className="btn btn-secondary"
+                className="btn btn-primary"
                 type="button"
-                onClick={handleSignOut}
+                onClick={() => navigate("/items")}
               >
-                Sign out
-              </button>
-            </div><button className="btn btn-secondary" type="button" onClick={() => navigate("/form")}>
-                Add Item
-              </button><button className="btn btn-secondary" type="button" onClick={() => navigate("/items")}>
                 Browse Items
-              </button></>
+              </button>
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={() => navigate("/form")}
+              >
+                Add Item
+              </button>
+            </>
           ) : (
             <div className="homepage-cta">
               <Link className="btn btn-primary" to="/login">

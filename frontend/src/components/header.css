@@ -58,19 +58,6 @@
   padding-inline: 1.25rem;
 }
 
-.nav-signout {
-  background: var(--accent);
-  color: #ffffff;
-  border: 1px solid transparent;
-  box-shadow: 0 8px 16px rgba(186, 28, 47, 0.18);
-}
-
-.nav-signout:hover,
-.nav-signout:focus-visible {
-  background: var(--accent-hover);
-  box-shadow: 0 10px 20px rgba(153, 21, 39, 0.24);
-}
-
 @media (max-width: 720px) {
   .nav-shell {
     flex-direction: column;

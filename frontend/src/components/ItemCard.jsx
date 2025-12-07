@@ -19,7 +19,13 @@ function ItemCard({ item, onDelete, isOwner }) {
         <span className="category">{item.category}</span>
         <div className="actions">
           {isOwner ? (
-            <button onClick={() => onDelete(item._id)}>Delete</button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => onDelete(item._id)}
+            >
+              Delete
+            </button>
           ) : (
             contactHref && (
               <a className="btn btn-secondary" href={contactHref}>
