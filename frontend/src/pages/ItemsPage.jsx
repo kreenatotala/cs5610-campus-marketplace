@@ -9,6 +9,12 @@ function ItemsPage() {
   const [items, setItems] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState({
+    category: "",
+    condition: "",
+    minPrice: "",
+    maxPrice: "",
+  });
   const [currentUser, setCurrentUser] = useState(() => getStoredUser());
 
   const normalizeId = (value) => {
@@ -88,9 +94,28 @@ function ItemsPage() {
       fetch(`/api/items/${id}`, { method: "DELETE" }).then(refresh);
     }
   };
+  const handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    setFilters((prev) => ({ ...prev, [name]: value }));
+    setPage(1);
+  };
 
-  const currentItems = items.slice((page - 1) * 25, page * 25);
-  const totalPages = Math.ceil(items.length / 25);
+  const filteredItems = items.filter((item) => {
+    if (filters.category && item.category !== filters.category) return false;
+    if (filters.condition && item.condition !== filters.condition) return false;
+
+    const price = Number(item.price) || 0;
+    const min = filters.minPrice ? Number(filters.minPrice) : null;
+    const max = filters.maxPrice ? Number(filters.maxPrice) : null;
+
+    if (min !== null && price < min) return false;
+    if (max !== null && price > max) return false;
+
+    return true;
+  });
+
+  const currentItems = filteredItems.slice((page - 1) * 25, page * 25);
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / 25));
 
   if (showForm) {
     return (
@@ -114,6 +139,63 @@ function ItemsPage() {
           <button className="btn btn-primary" onClick={() => setShowForm(true)}>
             + Create Listing
           </button>
+        </div>
+        <div className="items-filters">
+          <div className="filter-group">
+            <label htmlFor="filter-category">Category</label>
+            <select
+              id="filter-category"
+              name="category"
+              value={filters.category}
+              onChange={handleFilterChange}
+            >
+              <option value="">All</option>
+              <option value="books">Books</option>
+              <option value="furniture">Furniture</option>
+              <option value="electronics">Electronics</option>
+              <option value="clothing">Clothing</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="decor">Decor</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="filter-group">
+            <label htmlFor="filter-condition">Condition</label>
+            <select
+              id="filter-condition"
+              name="condition"
+              value={filters.condition}
+              onChange={handleFilterChange}
+            >
+              <option value="">All</option>
+              <option value="new">New</option>
+              <option value="like-new">Like New</option>
+              <option value="good">Good</option>
+              <option value="fair">Fair</option>
+            </select>
+          </div>
+          <div className="filter-group price-group">
+            <label htmlFor="filter-minPrice">Price range</label>
+            <div className="price-inputs">
+              <input
+                id="filter-minPrice"
+                name="minPrice"
+                type="number"
+                placeholder="Min"
+                value={filters.minPrice}
+                onChange={handleFilterChange}
+              />
+              <span className="price-separator">–</span>
+              <input
+                id="filter-maxPrice"
+                name="maxPrice"
+                type="number"
+                placeholder="Max"
+                value={filters.maxPrice}
+                onChange={handleFilterChange}
+              />
+            </div>
+          </div>
         </div>
         <div className="items-grid">
           {currentItems.map((item) => (

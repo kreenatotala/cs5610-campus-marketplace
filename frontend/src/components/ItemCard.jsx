@@ -16,7 +16,12 @@ function ItemCard({ item, onDelete, isOwner }) {
         <h3>{item.title}</h3>
         <p className="price">${item.price}</p>
         <p>{item.description}</p>
-        <span className="category">{item.category}</span>
+        <div className="item-meta">
+          <span className="category">{item.category}</span>
+          {item.condition && (
+            <span className="condition">{item.condition}</span>
+          )}
+        </div>
         <div className="actions">
           {isOwner ? (
             <button

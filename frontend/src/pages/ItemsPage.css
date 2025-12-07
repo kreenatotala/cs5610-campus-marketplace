@@ -18,6 +18,32 @@
   cursor: pointer;
 }
 
+.items-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  display: grid;
+  gap: 4px;
+}
+
+.price-group .price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-group .price-inputs input {
+  max-width: 120px;
+}
+
+.price-separator {
+  color: #7b6d5d;
+}
+
 .items-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

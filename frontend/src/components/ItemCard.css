@@ -31,12 +31,28 @@
     margin: 8px 0;
   }
   
+  .item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
   .category {
     display: inline-block;
     padding: 4px 12px;
     background: #f5f5f5;
     border-radius: 16px;
     font-size: 0.85rem;
+  }
+  
+  .condition {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    background: #fff4f4;
+    color: #a22828;
   }
   
   .actions {
