@@ -1,5 +1,5 @@
 .item-card {
-    background: white;
+    background: var(--surface);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -27,7 +27,7 @@
   .price {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #d32f2f;
+    color: var(--price-color);
     margin: 8px 0;
   }
   
@@ -41,7 +41,7 @@
   .category {
     display: inline-block;
     padding: 4px 12px;
-    background: #f5f5f5;
+    background: var(--chip-bg-neutral);
     border-radius: 16px;
     font-size: 0.85rem;
   }
@@ -51,8 +51,8 @@
     padding: 4px 12px;
     border-radius: 16px;
     font-size: 0.85rem;
-    background: #fff4f4;
-    color: #a22828;
+    background: var(--chip-bg-accent-soft);
+    color: var(--accent);
   }
   
   .actions {

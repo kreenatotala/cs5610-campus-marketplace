@@ -9,6 +9,9 @@
   --accent: #ba1c2f;
   --accent-hover: #991527;
   --accent-soft: rgba(186, 28, 47, 0.12);
+  --price-color: var(--accent);
+  --chip-bg-neutral: #f5f5f5;
+  --chip-bg-accent-soft: #fff4f4;
   --shadow-soft: 0 20px 40px rgba(83, 64, 50, 0.12);
   --radius-lg: 24px;
   --radius-md: 12px;
@@ -100,7 +103,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);

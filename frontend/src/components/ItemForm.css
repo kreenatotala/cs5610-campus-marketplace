@@ -8,24 +8,13 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 24px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
 }
   
   .item-form h2 {
     margin-top: 0;
-  }
-  
-  .item-form input,
-  .item-form select,
-  .item-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
   }
   
   .item-form textarea {

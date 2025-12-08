@@ -41,7 +41,7 @@
 }
 
 .price-separator {
-  color: #7b6d5d;
+  color: var(--text-muted);
 }
 
 .items-grid {

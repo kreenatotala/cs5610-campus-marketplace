@@ -133,13 +133,13 @@ function ItemsPage() {
   return (
     <>
       <GlobalNav />
-      <div className="items-page">
-        <div className="items-header">
+      <div className="items-page" role="main">
+        <header className="items-header">
           <h1>Campus Marketplace</h1>
           <button className="btn btn-primary" onClick={() => setShowForm(true)}>
             + Create Listing
           </button>
-        </div>
+        </header>
         <div className="items-filters">
           <div className="filter-group">
             <label htmlFor="filter-category">Category</label>
