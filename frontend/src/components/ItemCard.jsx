@@ -11,7 +11,14 @@ function ItemCard({ item, onDelete, isOwner }) {
 
   return (
     <div className="item-card">
-      <img src={placeholder} alt={item.title} className="item-image" />
+      <img 
+        src={item.imageUrl || placeholder} 
+        alt={item.title} 
+        className="item-image"
+        onError={(e) => {
+          e.target.src = placeholder;
+        }}
+      />
       <div className="item-content">
         <h3>{item.title}</h3>
         <p className="price">${item.price}</p>
@@ -51,6 +58,7 @@ ItemCard.propTypes = {
     description: PropTypes.string,
     price: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired,
+    condition: PropTypes.string,
     imageUrl: PropTypes.string,
     sellerEmail: PropTypes.string,
   }).isRequired,
