@@ -1,3 +1,4 @@
+// In Nav bar, i see "home" button in register page and login page which isn't required in my opinion
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../lib/apiClient.js";
