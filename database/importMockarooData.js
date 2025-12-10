@@ -3,8 +3,7 @@ dotenv.config();
 import { MongoClient, ObjectId } from "mongodb";
 import fs from "fs";
 
-const uri =
-  "mongodb+srv://db_user:123@campus-marketplace.mlxe99a.mongodb.net/?appName=campus-marketplace";
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 async function importData() {
