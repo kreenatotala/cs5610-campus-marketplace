@@ -12,23 +12,21 @@ Campus Marketplace is a web application that facilitates peer-to-peer item buyin
 ## Project Objective
 Campus Marketplace is a full-stack web application that helps Northeastern students buy and sell items within the campus community. Authenticated users can create listings, browse available items, contact sellers via email, and manage their own postings in a streamlined interface designed for quick, trustworthy exchanges.
 
-## Design Document
-[campus marketplace design doc.pdf](https://github.com/user-attachments/files/23469278/cs5610.design.doc.pdf)
+## Usability Study
+[usability study doc](https://docs.google.com/document/d/1HUawpuIdU0Q54LahNP8i3m88jD-12S-rpBq5rTbNM7w/edit?usp=sharing)
 
 ## Video and Presentation
-Video: https://drive.google.com/file/d/1-J--_N6PdriK05T5T7LQVqmLU0MIWx8v/view?usp=sharing
+Video: https://drive.google.com/file/d/18frXLGxuIbT4h-0GhZT94gybszDnOeyS/view?usp=sharing
 
-Presentation: https://docs.google.com/presentation/d/127IGJxd5xEtrEnO1ifA477FHT03G6-WHBpo04byaAe8/edit?usp=sharing
+Presentation: https://docs.google.com/presentation/d/1SfjHu-IJtsGDzNyxKjV7CUEnfwnSdLXhmGCZVjFSmQI/edit?usp=sharing
 
 ## Deployement
 It is deployed publicly using `Render` here: https://cs5610-campus-marketplace.onrender.com 
 
 ## Screenshot
-<img width="1002" height="678" alt="Screenshot 2025-11-10 at 8 27 12 PM" src="https://github.com/user-attachments/assets/21c7bd6f-dcbd-4c16-95a6-a1e0bde82eb6" />
-<img width="1437" height="804" alt="Screenshot 2025-11-10 at 8 26 56 PM" src="https://github.com/user-attachments/assets/f4086754-d5df-4b33-8e05-5ad6dd73dc54" />
-<img width="930" height="679" alt="Screenshot 2025-11-10 at 8 27 25 PM" src="https://github.com/user-attachments/assets/906298be-5c0f-4e05-b6d3-ceab33e88e32" />
-<img width="1115" height="667" alt="Screenshot 2025-11-10 at 9 07 33 PM" src="https://github.com/user-attachments/assets/5ebc62e1-0866-4ba8-9d00-657f996aa7c1" />
-<img width="575" height="674" alt="Screenshot 2025-11-10 at 9 07 41 PM" src="https://github.com/user-attachments/assets/c16ccec3-bb7d-4191-ba3c-cb4153ec9a54" />
+<img width="1432" height="754" alt="Screenshot 2025-12-09 at 10 06 22 PM" src="https://github.com/user-attachments/assets/81595559-899d-4af3-a0f1-16287a1d28c1" />
+<img width="1435" height="686" alt="Screenshot 2025-12-09 at 10 12 36 PM" src="https://github.com/user-attachments/assets/e61fcabf-7dc5-494b-a8bf-4f39b1b75c1e" />
+<img width="1437" height="749" alt="Screenshot 2025-12-09 at 10 12 44 PM" src="https://github.com/user-attachments/assets/0b4e2ab2-014b-4884-8108-84c47128eb4b" />
 
 
 ## Tech Stack
