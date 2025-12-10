@@ -146,16 +146,20 @@ function ItemForm({ item, onSubmit, onCancel, embedded = false }) {
         {formData.imageUrl && (
           <div className="image-preview">
             <p>Image Preview:</p>
-            <img 
-              src={formData.imageUrl} 
-              alt="Item preview" 
+            <img
+              src={formData.imageUrl}
+              alt="Item preview"
               onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'block';
+                e.target.style.display = "none";
+                e.target.nextSibling.style.display = "block";
               }}
-              style={{ maxWidth: '300px', maxHeight: '300px', objectFit: 'cover' }}
+              style={{
+                maxWidth: "300px",
+                maxHeight: "300px",
+                objectFit: "cover",
+              }}
             />
-            <p style={{ display: 'none', color: '#e74c3c' }}>
+            <p style={{ display: "none", color: "#e74c3c" }}>
               Failed to load image. Please check the URL.
             </p>
           </div>
