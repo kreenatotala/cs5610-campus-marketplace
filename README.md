@@ -6,6 +6,7 @@ Campus Marketplace is a web application that facilitates peer-to-peer item buyin
 - Kreena Totala
 - Swar Kewalia
 
+
 ## Class Link
 - [CS5610: Web Development – Northeastern University](https://johnguerra.co/classes/webDevelopment_fall2025/)
 
