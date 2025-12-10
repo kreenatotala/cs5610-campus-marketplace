@@ -20,8 +20,10 @@
     padding: 16px;
   }
   
-  .item-content h3 {
+  .item-title {
     margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
   }
   
   .price {

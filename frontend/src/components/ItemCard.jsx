@@ -20,7 +20,7 @@ function ItemCard({ item, onDelete, isOwner }) {
         }}
       />
       <div className="item-content">
-        <h3>{item.title}</h3>
+        <p className="item-title">{item.title}</p>
         <p className="price">${item.price}</p>
         <p>{item.description}</p>
         {item.location.building && (
