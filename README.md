@@ -27,6 +27,7 @@ It is deployed publicly using `Render` here: https://cs5610-campus-marketplace.o
 <img width="1432" height="754" alt="Screenshot 2025-12-09 at 10 06 22 PM" src="https://github.com/user-attachments/assets/81595559-899d-4af3-a0f1-16287a1d28c1" />
 <img width="1435" height="686" alt="Screenshot 2025-12-09 at 10 12 36 PM" src="https://github.com/user-attachments/assets/e61fcabf-7dc5-494b-a8bf-4f39b1b75c1e" />
 <img width="1437" height="749" alt="Screenshot 2025-12-09 at 10 12 44 PM" src="https://github.com/user-attachments/assets/0b4e2ab2-014b-4884-8108-84c47128eb4b" />
+<img width="1467" height="736" alt="Screenshot 2025-12-09 at 10 32 32 PM" src="https://github.com/user-attachments/assets/66b05474-b17b-4afc-9756-9767a8ce8d7f" />
 
 
 ## Tech Stack
