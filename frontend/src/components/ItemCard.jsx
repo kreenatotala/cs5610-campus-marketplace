@@ -11,9 +11,9 @@ function ItemCard({ item, onDelete, isOwner }) {
 
   return (
     <div className="item-card">
-      <img 
-        src={item.imageUrl || placeholder} 
-        alt={item.title} 
+      <img
+        src={item.imageUrl || placeholder}
+        alt={item.title}
         className="item-image"
         onError={(e) => {
           e.target.src = placeholder;
@@ -23,6 +23,9 @@ function ItemCard({ item, onDelete, isOwner }) {
         <h3>{item.title}</h3>
         <p className="price">${item.price}</p>
         <p>{item.description}</p>
+        {item.location.building && (
+          <p className="building">Building: {item.location.building}</p>
+        )}
         <div className="item-meta">
           <span className="category">{item.category}</span>
           {item.condition && (
@@ -60,6 +63,9 @@ ItemCard.propTypes = {
     category: PropTypes.string.isRequired,
     condition: PropTypes.string,
     imageUrl: PropTypes.string,
+    location: PropTypes.shape({
+      building: PropTypes.string,
+    }),
     sellerEmail: PropTypes.string,
   }).isRequired,
   onDelete: PropTypes.func,
